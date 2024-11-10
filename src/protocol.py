@@ -10,6 +10,7 @@ from commands.handle_start import handle_start
 from commands.handle_turn import handle_turn
 
 need_stop = False
+gameBoard = None
 
 class LogType(Enum):
     UNKNOWN = 0
