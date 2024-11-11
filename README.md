@@ -7,3 +7,5 @@
 - __Xer0ce__
 
 - __Garoverr__
+
+source venv/bin/activate

@@ -1,6 +1,7 @@
 import sys
 from enum import Enum
 from typing import Callable
+# COMMANDS
 from commands.handle_about import handle_about
 from commands.handle_begin import handle_begin
 from commands.handle_board import handle_board
@@ -8,8 +9,13 @@ from commands.handle_end import handle_end
 from commands.handle_info import handle_info
 from commands.handle_start import handle_start
 from commands.handle_turn import handle_turn
+# BONUS
+from commands.handle_restart import handle_restart
 
 need_stop = False
+gameBoard = None
+rows = 0
+cols = 0
 
 class LogType(Enum):
     UNKNOWN = 0
@@ -33,6 +39,7 @@ COMMAND_MAPPINGS: dict[str, Callable[[str], None]] = {
     "BEGIN": handle_begin,
     "TURN": handle_turn,
     "BOARD": handle_board,
+    "RESTART": handle_restart
 }
 
 def handle_command(cmd: str) -> None:
@@ -43,7 +50,7 @@ def handle_command(cmd: str) -> None:
 
 
 def main() -> int:
-    while not need_stop:
+    while need_stop is False:
         try:
             cmd = input()
         except EOFError:
