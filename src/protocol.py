@@ -11,7 +11,19 @@ from commands.handle_start import handle_start
 from commands.handle_turn import handle_turn
 # BONUS
 from commands.handle_restart import handle_restart
+from commands.handle_displayInfo import handle_displayInfo
+from commands.handle_rectstart import handle_rectstart
 
+settings = { 
+    "timeout_turn": 0, 
+    "timeout_match": 0, 
+    "max_memory": 0, 
+    "time_left": 0, 
+    "game_type": 0, 
+    "rule": 0, 
+    "evaluate": (0, 0), 
+    "folder": ""
+}
 need_stop = False
 gameBoard = None
 rows = 0
@@ -39,7 +51,9 @@ COMMAND_MAPPINGS: dict[str, Callable[[str], None]] = {
     "BEGIN": handle_begin,
     "TURN": handle_turn,
     "BOARD": handle_board,
-    "RESTART": handle_restart
+    "RESTART": handle_restart,
+    "DISPLAYINFO": handle_displayInfo,
+    "RECTSTART": handle_rectstart
 }
 
 def handle_command(cmd: str) -> None:
