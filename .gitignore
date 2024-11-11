@@ -137,6 +137,7 @@ cython_debug/
 
 # Ignore all files and directories starting with "Liskvork"
 Liskvork*
+liskvork*
 
 # Ignore .exe
 pbrain-player1.exe
