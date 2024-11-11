@@ -16,8 +16,6 @@ def handle_turn(msg: str) -> None:
         return
 
     protocol.gameBoard[x][y] = 2
-    ## ICI FAIRE LE CALCUL POUR LE PROCHIAN COUP A JOUER (EN GROS L'IA)
-    ## 1 C'EST POUR NOUS ET 2 POUR L'ADVERSAIRE
     xBest, yBest = 0, 0
     protocol.gameBoard[xBest][yBest] = 1
     print(f"{xBest} {yBest}")
