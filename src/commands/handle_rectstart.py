@@ -1,21 +1,19 @@
 import protocol
 
-def handle_start(msg: str) -> None:
-    if len(msg.split()) != 2:
-        print("erro command start just accept 2 arguments")
+def handle_rectstart(msg: str) -> None:
+    if len(msg.split()) != 3:
+        print("erro command start just accept 3 arguments")
         return
     try:
-        size = int(msg.split()[1])
+        sizeX = int(msg.split()[1])
+        sizeY = int(msg.split()[2])
     except (IndexError, ValueError):
         print("unsupported size or other error")
         return
 
-    if size != 20:
-        print(" unsupported size or other error")
-        return
-    protocol.gameBoard = [[0 for _ in range(size)] for _ in range(size)]
-    protocol.rows = size
-    protocol.cols = size
+    protocol.gameBoard = [[0 for _ in range(sizeY)] for _ in range(sizeX)]
+    protocol.rows = sizeX
+    protocol.cols = sizeY
     protocol.settings ={
         "timeout_turn": 0, 
         "timeout_match": 0, 
