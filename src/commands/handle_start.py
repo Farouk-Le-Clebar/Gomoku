@@ -10,7 +10,7 @@ def handle_start(msg: str) -> None:
         print("ERROR message - unsupported size or other error")
         return
 
-    if size != 20:
+    if size < 1:
         print("ERROR message - unsupported size or other error")
         return
     protocol.gameBoard = [[0 for _ in range(size)] for _ in range(size)]
