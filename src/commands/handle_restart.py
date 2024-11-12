@@ -15,5 +15,6 @@ def handle_restart(msg: str) -> None:
         "evaluate": (0, 0), 
         "folder": ""
     }
-    print("OK")
+    if (msg != "BOARD"):
+        print("OK")
 
