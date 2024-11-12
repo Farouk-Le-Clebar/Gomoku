@@ -12,5 +12,5 @@ def handle_begin(msg: str) -> None:
     y = (protocol.cols // 2)
 
     protocol.gameBoard[x][y] = 1
-    print(f"{x} {y}")
+    print(f"{x},{y}")
 
