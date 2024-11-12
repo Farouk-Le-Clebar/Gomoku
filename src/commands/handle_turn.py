@@ -18,4 +18,4 @@ def handle_turn(msg: str) -> None:
     protocol.gameBoard[x][y] = 2
     xBest, yBest = (x  + 1), (y + 1)
     protocol.gameBoard[xBest][yBest] = 1
-    print(f"{xBest} {yBest}")
+    print(f"{xBest},{yBest}")
