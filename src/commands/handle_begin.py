@@ -2,7 +2,7 @@ import protocol
 
 def handle_begin(msg: str) -> None:
     if ((protocol.gameBoard is None) or (protocol.rows == 0 or protocol.cols == 0)):
-        print("Game board is not initialized.")
+        print("ERROR message - Game board is not initialized.")
         return
 
     x = 0

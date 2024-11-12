@@ -2,13 +2,13 @@ import protocol
 
 def handle_rectstart(msg: str) -> None:
     if len(msg.split()) != 3:
-        print("erro command start just accept 3 arguments")
+        print("ERROR message - command start just accept 3 arguments")
         return
     try:
         sizeX = int(msg.split()[1])
         sizeY = int(msg.split()[2])
     except (IndexError, ValueError):
-        print("unsupported size or other error")
+        print("ERROR message - unsupported size or other error")
         return
 
     protocol.gameBoard = [[0 for _ in range(sizeY)] for _ in range(sizeX)]
