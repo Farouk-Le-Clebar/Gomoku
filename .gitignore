@@ -141,3 +141,7 @@ liskvork*
 
 # Ignore .exe
 pbrain-player1.exe
+
+# Ignore binary files
+
+pbrain-gomoku-ai
