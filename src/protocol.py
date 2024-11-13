@@ -13,6 +13,7 @@ from commands.handle_turn import handle_turn
 from commands.handle_restart import handle_restart
 from commands.handle_displayInfo import handle_displayInfo
 from commands.handle_rectstart import handle_rectstart
+from commands.handle_takeback import handle_takeback
 
 settings = { 
     "timeout_turn": 0, 
@@ -53,7 +54,8 @@ COMMAND_MAPPINGS: dict[str, Callable[[str], None]] = {
     "BOARD": handle_board,
     "RESTART": handle_restart,
     "DISPLAYINFO": handle_displayInfo,
-    "RECTSTART": handle_rectstart
+    "RECTSTART": handle_rectstart,
+    "TAKEBACK": handle_takeback,
 }
 
 def handle_command(cmd: str) -> None:
