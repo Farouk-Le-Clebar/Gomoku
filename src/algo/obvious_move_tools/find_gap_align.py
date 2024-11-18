@@ -114,8 +114,8 @@ def up_diag_gap_completion(board, i, j, search_len, player):
 
 def find_gap_completion(board, search_len, player):
     moves = set()
-    for i in range(20):
-        for j in range(20):
+    for i in range(protocol.rows):
+        for j in range(protocol.cols):
             moves.update(horizontal_gap_completion(board, i, j, search_len, player))
             moves.update(vertical_gap_completion(board, i, j, search_len, player))
             moves.update(fall_diag_gap_completion(board, i, j, search_len, player))
