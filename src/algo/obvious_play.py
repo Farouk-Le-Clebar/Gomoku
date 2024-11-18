@@ -2,8 +2,7 @@ import protocol
 from .obvious_move_tools.find_align import find_align
 from .obvious_move_tools.find_gap_align import find_gap_completion
 
-def find_best_move():
-    board = protocol.gameBoard
+def find_best_move(board):
 
 # Étape 1 : Compléter un alignement direct de 5 pour P1
     move = find_align(board, search_len=4, player=1)
@@ -44,5 +43,5 @@ def find_best_move():
     move = find_gap_completion(board, search_len=3, player=1)
     if move:
         return move
-    print("NO COUP TO PLAY")
     return None
+
