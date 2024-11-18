@@ -19,7 +19,7 @@ def monte_carlo():
             x, y = empty_positions[i]
             copyBoard = [row[:] for row in protocol.gameBoard]
             copyBoard[x][y] = 1
-            score = simulate(copyBoard, 1, 2, 0)
+            score = simulate(copyBoard, 10, 2, 0)
             list_score.append([score, x, y])
 
         for score, x, y in list_score:
