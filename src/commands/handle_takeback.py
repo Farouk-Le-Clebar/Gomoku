@@ -1,11 +1,10 @@
 import protocol
-from algo.monte_carlo import monte_carlo
 
-def handle_turn(msg: str) -> None:
+def handle_takeback(msg: str) -> None:
     if ((protocol.gameBoard is None) or (protocol.rows == 0 or protocol.cols == 0)):
         print("ERROR message - Game board is not initialized.")
         return
-    try: 
+    try:
         _, coordinates = msg.split()
         x, y = map(int, coordinates.split(','))
     except (IndexError, ValueError):
@@ -16,5 +15,5 @@ def handle_turn(msg: str) -> None:
         print("ERROR message - Other player sent invalid coordinates")
         return
 
-    protocol.gameBoard[x][y] = 2
-    monte_carlo()
+    protocol.gameBoard[x][y] = 0
+    print("OK")

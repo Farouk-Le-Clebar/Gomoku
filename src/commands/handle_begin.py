@@ -5,11 +5,8 @@ def handle_begin(msg: str) -> None:
         print("ERROR message - Game board is not initialized.")
         return
 
-    x = 0
-    y = 0
-
-    x = (protocol.rows // 2)
-    y = (protocol.cols // 2)
+    x = 2
+    y = 17
 
     protocol.gameBoard[x][y] = 1
     print(f"{x},{y}")
