@@ -25,6 +25,7 @@ settings = {
     "evaluate": (0, 0), 
     "folder": ""
 }
+
 need_stop = False
 gameBoard = None
 rows = 0

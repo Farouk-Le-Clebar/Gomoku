@@ -1,4 +1,5 @@
 import protocol
+from algo.monte_carlo import monte_carlo
 
 def handle_turn(msg: str) -> None:
     if ((protocol.gameBoard is None) or (protocol.rows == 0 or protocol.cols == 0)):
@@ -16,6 +17,4 @@ def handle_turn(msg: str) -> None:
         return
 
     protocol.gameBoard[x][y] = 2
-    xBest, yBest = (x  + 1), (y + 1)
-    protocol.gameBoard[xBest][yBest] = 1
-    print(f"{xBest},{yBest}")
+    monte_carlo()
