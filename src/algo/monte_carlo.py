@@ -9,10 +9,10 @@ def monte_carlo():
     best = find_best_move(protocol.gameBoard)
     best_score = [float('inf'), 0, 0]
     list_score = []
-    
+
     if best is not None:
-        print(f"{best[0]},{best[1]}")
         protocol.gameBoard[best[0]][best[1]] = 1
+        return f"{best[0]},{best[1]}"
     else:
         empty_positions = define_best_tale_to_play(protocol.gameBoard)
         for i in range(len(empty_positions)):
@@ -27,8 +27,8 @@ def monte_carlo():
                 best_score = [score, x, y]
         
         print(f"DEBUG result : {best_score}")
-        print(f"{best_score[1]},{best_score[2]}")
         protocol.gameBoard[best_score[1]][best_score[2]] = 1
+        return f'{best_score[1]},{best_score[2]}'
 
 def simulate(board, profondeur, player, score) -> int:
     if profondeur == 0:
@@ -36,7 +36,7 @@ def simulate(board, profondeur, player, score) -> int:
     empty_positions = find_empty_position(board)
     randTale = random.choice(empty_positions)
     board[randTale[0]][randTale[1]] = player
-    
+
     if check_event_simulation(board) == 1:
         print("DEBUG Simulation ends: event detected")
         return score

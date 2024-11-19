@@ -17,4 +17,4 @@ def handle_turn(msg: str) -> None:
         return
 
     protocol.gameBoard[x][y] = 2
-    monte_carlo()
+    print(monte_carlo())

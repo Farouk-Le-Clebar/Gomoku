@@ -1,14 +1,18 @@
 NAME = pbrain-player1.exe
-NAME2 = pbrain-player2.exe
 NAMEBIN = pbrain-gomoku-ai
 SRC = src/pbrain_gomoku_ai.py
 RM = rm -rf
+SOURCE_FILES = $(wildcard src/**/*.py)
+PYTHON_ENTRY = src/pbrain_gomoku_ai.py
 
 all: $(NAMEBIN)
 
 $(NAMEBIN):
 	cp $(SRC) $(NAMEBIN)
 	chmod +x $(NAMEBIN)
+
+build: $(SOURCE_FILES)
+	pyinstaller --onefile --name $(NAME) $(PYTHON_ENTRY)
 
 exec :
 	pyinstaller --onefile --name pbrain-player1 $(SRC)
