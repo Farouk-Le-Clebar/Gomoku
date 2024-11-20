@@ -5,7 +5,7 @@ def handle_turn(msg: str) -> None:
     if ((protocol.gameBoard is None) or (protocol.rows == 0 or protocol.cols == 0)):
         print("ERROR message - Game board is not initialized.")
         return
-    try: 
+    try:
         _, coordinates = msg.split()
         x, y = map(int, coordinates.split(','))
     except (IndexError, ValueError):
@@ -17,4 +17,6 @@ def handle_turn(msg: str) -> None:
         return
 
     protocol.gameBoard[x][y] = 2
-    print(monte_carlo())
+    result = monte_carlo()
+    if result is not None:
+        print(result)
