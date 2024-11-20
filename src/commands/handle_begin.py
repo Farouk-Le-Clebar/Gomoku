@@ -7,7 +7,9 @@ def handle_begin(msg: str) -> None:
         print("ERROR message - Game board is not initialized.")
         return
 
-    empty_positions = find_empty_position(protocol.gameBoard)
-    y, x = random.choice(empty_positions)
-    protocol.gameBoard[y][x] = 1
-    print(f"{y},{x}")
+    if protocol.gameBoard[protocol.rows // 2][protocol.cols // 2] == 0:
+        protocol.gameBoard[protocol.rows // 2][protocol.cols // 2] = 1
+        print(f"{protocol.rows // 2},{protocol.cols // 2}")
+    else:
+        protocol.gameBoard[protocol.rows // 2 + 1][protocol.cols // 2 + 1] = 1
+        print(f"{protocol.rows // 2 + 1},{protocol.cols // 2 + 1}")
