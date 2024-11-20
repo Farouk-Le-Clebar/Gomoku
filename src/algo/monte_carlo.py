@@ -4,14 +4,29 @@ from algo.find_empty_position import find_empty_position
 from algo.check_simulation import check_event_simulation
 from algo.obvious_play import find_best_move
 from algo.define_best_area_to_play import define_best_tale_to_play
+from commands.handle_begin import handle_begin
+
+def check_begin(board):
+    for i in range(len(board)):
+        for j in range(len(board[i])):
+            if board[i][j] == 1:
+                return True
+    return False
 
 def monte_carlo():
+    if not check_begin(protocol.gameBoard):
+        handle_begin("BEGIN")
+        print("DEBUG BEGIN")
+        return None
+
     best = find_best_move(protocol.gameBoard)
     best_score = [float('inf'), 0, 0]
     list_score = []
 
+
     if best is not None:
         protocol.gameBoard[best[0]][best[1]] = 1
+        print("DEBUG OBVIOUS")
         return f"{best[0]},{best[1]}"
     else:
         empty_positions = define_best_tale_to_play(protocol.gameBoard)
@@ -26,7 +41,7 @@ def monte_carlo():
             if score < best_score[0]:
                 best_score = [score, x, y]
         
-        print(f"DEBUG result : {best_score}")
+        print(f"DEBUG MONTE CARLO : {best_score}")
         protocol.gameBoard[best_score[1]][best_score[2]] = 1
         return f'{best_score[1]},{best_score[2]}'
 
