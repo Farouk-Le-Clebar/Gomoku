@@ -18,19 +18,19 @@ def find_best_move(board):
     move = find_align(board, search_len=4, player=2)
     if move:
         return move[0]
-    
+
 # Étape 2.2 : Bloquer un alignement à trou de 5 pour P2 (adverse) 
     move = find_gap_completion(board, search_len=4, player=2)
     if move:
         return move[0]
 
-# Étape 3 : Bloquer un alignement direct de 4 pour P2 (adverse)
-    move = find_align(board, search_len=3, player=2)
+# Étape 3.2 : Bloquer un alignement à trou de 4 pour P2 (adverse)
+    move = find_gap_completion(board, search_len=3, player=2)
     if move:
         return move[0]
 
-# Étape 3.2 : Bloquer un alignement à trou de 4 pour P2 (adverse)
-    move = find_gap_completion(board, search_len=3, player=2)
+# Étape 3 : Bloquer un alignement direct de 4 pour P2 (adverse)
+    move = find_align(board, search_len=3, player=2)
     if move:
         return move[0]
 
