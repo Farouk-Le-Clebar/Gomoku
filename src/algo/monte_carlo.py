@@ -1,10 +1,9 @@
-import protocol
-import random
-from algo.find_empty_position import find_empty_position 
 from algo.check_simulation import check_event_simulation
 from algo.obvious_play import find_best_move
 from algo.define_best_area_to_play import define_best_tale_to_play
 from commands.handle_begin import handle_begin
+import random
+import protocol
 
 def check_begin(board):
     for i in range(len(board)):
@@ -14,46 +13,44 @@ def check_begin(board):
     return False
 
 def monte_carlo():
+    deep = 500
+
     if not check_begin(protocol.gameBoard):
         handle_begin("BEGIN")
         print("DEBUG BEGIN")
         return None
 
     best = find_best_move(protocol.gameBoard)
-    best_score = [float('inf'), 0, 0]
-    list_score = []
-
 
     if best is not None:
         protocol.gameBoard[best[0]][best[1]] = 1
         print("DEBUG OBVIOUS")
         return f"{best[0]},{best[1]}"
     else:
-        empty_positions = define_best_tale_to_play(protocol.gameBoard)
-        for i in range(len(empty_positions)):
-            x, y = empty_positions[i]
-            copyBoard = [row[:] for row in protocol.gameBoard]
-            copyBoard[x][y] = 1
-            score = simulate(copyBoard, 10, 2, 0)
-            list_score.append([score, x, y])
+        empty_positions = define_best_tale_to_play(protocol.gameBoard, 1)
+        win_counts = {pos: 0 for pos in empty_positions}
+        reel_deep = deep // len(empty_positions)
 
-        for score, x, y in list_score:
-            if score < best_score[0]:
-                best_score = [score, x, y]
-        
-        print(f"DEBUG MONTE CARLO : {best_score}")
-        protocol.gameBoard[best_score[1]][best_score[2]] = 1
-        return f'{best_score[1]},{best_score[2]}'
+        for position in empty_positions:
+            for _ in range(reel_deep):
+                board = [row[:] for row in protocol.gameBoard]
+                board[position[0]][position[1]] = 1
+                winner = simulate(board, 2, 0)
+                if winner == 1:
+                    win_counts[position] += 1
 
-def simulate(board, profondeur, player, score) -> int:
-    if profondeur == 0:
-        return score
-    empty_positions = find_empty_position(board)
-    randTale = random.choice(empty_positions)
-    board[randTale[0]][randTale[1]] = player
+        best_position = max(win_counts, key=win_counts.get)
+        protocol.gameBoard[best_position[0]][best_position[1]] = 1
+        print(f"DEBUG MONTE CARLO : {win_counts}")
+        return f'{best_position[0]},{best_position[1]}'
 
-    if check_event_simulation(board) == 1:
-        print("DEBUG Simulation ends: event detected")
-        return score
-    score = simulate(board, profondeur - 1, 3 - player, score)
-    return score
+def simulate(board, player, winner) -> int:
+    best_empty_positions = define_best_tale_to_play(board, player)
+    y, x = random.choice(best_empty_positions)
+    board[y][x] = player
+
+    winner = check_event_simulation(board)
+    if winner != 0:
+        return winner
+
+    return simulate(board, 3 - player, winner)
